@@ -1,0 +1,59 @@
+<div>
+  <div *ngIf="!loggedin; else Temp">
+    <h3 style="padding-left: 45px; width: 75%">
+      Hello there, Sign in to continue
+    </h3>
+
+    <div class="row m-0">
+      <form [formGroup]="loginForm" style="padding-left: 45px; width: 75%">
+        <div class="form-group">
+          <label>Username/Email</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="email"
+            [(ngModel)]="email"
+          />
+          <div>
+            <label *ngIf="f.email?.errors?.required && f?.email?.dirty">
+              Username is required
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            [(ngModel)]="password"
+          />
+          <div>
+            <!-- <label>
+              Password is required
+            </label> -->
+          </div>
+        </div>
+        <button (click)="onSubmit()">Login</button>
+      </form>
+    </div>
+  </div>
+  <ng-template #Temp>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Pantone Value</th>
+          <th>year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let eachitem of bodyContent">
+          <td>{{ eachitem?.name }}</td>
+          <td>{{ eachitem?.pantone_value }}</td>
+          <td>{{ eachitem?.year }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+</div>
